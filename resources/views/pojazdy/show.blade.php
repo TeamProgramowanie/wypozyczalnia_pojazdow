@@ -8,9 +8,9 @@
             <th>Stan</th>
             <th>Przebieg</th>
             <th>Pojemność baku</th>
-            @can('pracownik')
+            @auth
             <th colspan="2">Zarządzanie</th>
-            @endcan
+            @endauth
         </tr>
 
             <tr>
@@ -19,16 +19,16 @@
                 <td>{{ $pojazdy->stan }}</td>
                 <td>{{ $pojazdy->przebieg }}</td>
                 <td>{{ $pojazdy->pojemnosc_baku }}</td>
-                @can('pracownik')
-                    <td><a class="btn btn-info ms-md-2" href="{{ route('pojazdy.edit', ['pojazd' => $pojazdy->id]) }}">Edytuj wpis</a></td>
-                    <td>
-                        <form method="POST" action="{{ route('pojazdy.destroy', ['pojazd' => $pojazdy->id]) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger ms-md-2" type="submit">Usuń wpis</button>
-                        </form>
-                    </td>
-                @endcan
+{{--                @auth--}}
+                <td><a class="btn btn-info ms-md-2" href="{{ route('pojazdy.edit', ['pojazd' => $pojazdy->id]) }}">Edytuj wpis</a></td>
+                <td>
+                    <form method="POST" action="{{ route('pojazdy.destroy', ['pojazd' => $pojazdy->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger ms-md-2" type="submit">Usuń wpis</button>
+                    </form>
+                </td>
+{{--                @endauth--}}
             </tr>
     </table>
     <br>
