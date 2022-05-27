@@ -29,9 +29,12 @@
             </ul>
             <ul class="navbar-nav ms-auto">
                 @auth
-
-                    <li class="nav-item"><a class="btn btn-danger ms-md-2" role="button" href="{{ route('pracownicy.index') }}">Panel Pracownika</a></li>
-                    <li class="nav-item"><a class="btn btn-info ms-md-2" role="button" href="#">Panel Klienta</a></li>
+                    @can('pracownik')
+                        <li class="nav-item"><a class="btn btn-danger ms-md-2" role="button" href="{{ route('pracownicy.index') }}">Panel Pracownika</a></li>
+                    @endcan
+                    @cannot('pracownik')
+                        <li class="nav-item"><a class="btn btn-info ms-md-2" role="button" href="#">Panel Klienta</a></li>
+                    @endcannot
                     <form class="inline" method="POST" action="{{ route('user.logout') }}">
                         @csrf
                         <li class="nav-item"><button type="submit" class="btn btn-success ms-md-2">

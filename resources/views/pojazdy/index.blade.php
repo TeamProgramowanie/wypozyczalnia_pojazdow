@@ -9,7 +9,9 @@
             <th scope="col" colspan="3">Pojazd</th>
             <th scope="col">Stan</th>
             <th scope="col">Cena</th>
-            <th scope="col">Opcja</th>
+            @can('pracownik')
+                <th scope="col">Opcja</th>
+            @endcan
         </tr>
 
         @foreach($pojazdy as $pojazd)
@@ -20,7 +22,9 @@
                 <td colspan="3">{{ $pojazd->s_model->name }} {{ $pojazd->s_marka->name }} {{ $pojazd->wersja }}</td>
                 <td>{{ $pojazd->stan }}</td>
                 <td>{{ $pojazd->cena }} zł</td>
-                <td style="text-align: center"><a class="btn btn-primary text-center " role="button" href="{{ route('wypozyczenia.create') }}">Wypożycz</a></td>
+                @can('pracownik')
+                    <td style="text-align: center"><a class="btn btn-primary text-center " role="button" href="{{ route('wypozyczenia.create') }}">Wypożycz</a></td>
+                @endcan
             </tr>
 
         @endforeach
